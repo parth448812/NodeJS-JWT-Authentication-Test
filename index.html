@@ -67,11 +67,16 @@
                     if (res && res.data && res.data.success) {
                         document.querySelector('h1.row').innerHTML ='Dashboard';
                         document.querySelector('main').innerHTML = res.data.myContent;
+                        changeRoute('/api/dashboard');
                     }
                 }).catch(err => {
                     handleTokenExpiration(err);
                 });
             }
+        }
+        
+        function changeRoute(route) {
+            history.pushState(null, null, route);
         }
 
         function getSettings() {
@@ -86,6 +91,7 @@
                         document.querySelector('h1.row').innerHTML = 'Settings';
                         document.querySelector('main').innerHTML = res.data.myContent;
                     }
+                    changeRoute('/api/dashboard');
                 }).catch(err => {
                     handleTokenExpiration(err);
                 });
